@@ -21,17 +21,39 @@ class App extends React.Component {
         {
           id: 3,
           title: "ready for your school",
-          finished: true,
+          finished: false,
         }
       ]
     }
+  }
+
+  // todos are complete or not functionality
+  todoHandler = (id) => {
+    let { todos } = this.state;
+    this.setState({
+      todos: todos.map((todo) => {
+        if(todo.id === id) {
+          todo.finished = !todo.finished;
+        }
+        return todo;
+      })
+    })
+  }
+
+
+  // delete todos functionality
+  btnHandler = (id) => {
+    let { todos } = this.state;
+    this.setState({
+      todos: todos.filter(todo => todo.id !== id)
+    })
   }
 
   render() {
     return (
       <div>
         <h1>Todo App</h1>
-        <TodoList list={this.state.todos} />
+        <TodoList list={this.state.todos} todoHandler={this.todoHandler} btnHandler={this.btnHandler}/>
       </div>
     )
   }
