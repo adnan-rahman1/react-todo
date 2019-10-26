@@ -6,7 +6,12 @@ const TodoList = ({ list, todoHandler, btnHandler }) => {
         <div>
             { 
                 list.map(element => (
-                    <Todo key={element.id} singleTodo={element} todoHandler={todoHandler} btnHandler={btnHandler}/>
+                    <Todo 
+                        key={element.id} 
+                        singleTodo={element} 
+                        todoHandler={todoHandler} 
+                        btnHandler={btnHandler}
+                    />
                 ))
             }
         </div>

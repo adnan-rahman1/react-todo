@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+
+import AddTodo from "./addtodo/AddTodo";
 import TodoList from './todolist/TodoList';
 
 class App extends React.Component {
@@ -26,6 +28,7 @@ class App extends React.Component {
       ]
     }
   }
+  
 
   // todos are complete or not functionality
   todoHandler = (id) => {
@@ -40,6 +43,17 @@ class App extends React.Component {
     })
   }
 
+  // add todos functionality
+  addTodoHanlder = (title) => {
+    let newTodo = {
+      id: this.state.todos.length + 1,
+      title,
+      finished: false
+    };
+    this.setState({
+      todos: [...this.state.todos, newTodo ]
+    })
+  }
 
   // delete todos functionality
   btnHandler = (id) => {
@@ -53,7 +67,14 @@ class App extends React.Component {
     return (
       <div>
         <h1>Todo App</h1>
-        <TodoList list={this.state.todos} todoHandler={this.todoHandler} btnHandler={this.btnHandler}/>
+        <AddTodo 
+          addTodoHanlder={this.addTodoHanlder} 
+        />
+        <TodoList 
+          list={this.state.todos} 
+          todoHandler={this.todoHandler} 
+          btnHandler={this.btnHandler}
+        />
       </div>
     )
   }
